@@ -1,0 +1,79 @@
+{% extends 'finances/finance_base.html' %}
+
+{% block content%}
+    <style>
+
+        .invest-block
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+
+            width: 1000px;
+            height: 500px;
+            border-radius: 20px;
+            
+            background-color: white;
+        }
+
+        .back-button
+        {
+            margin-left: 2%;
+            margin-top: 3%;
+            text-align: center;
+            width: 80px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        .qr
+        {
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+    </style>
+
+    <div class="invest-block">
+        <center>
+            <br>
+            <div>
+                <h2>{{user}}, Please Complete Your Investment Deposit</h2>
+            </div>
+            <div style="height: 10px;"></div>
+            <p>Send {{sum}} BTC to the Bitcoin address below:</p>
+            <div style="height: 10px;"></div>
+            <p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p>
+            <div style="height: 5px;"></div>
+            <img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" >
+            <br>
+            <form action="#" method="post" style="height: 10px;">
+                <label>Your TXID:</label>
+                <input type="text" placeholder="TXID" name="TXID" required>
+                <input type="submit" value="Send request">
+            </form>
+        </center>
+
+        <div class="back-button">
+            <a href="/invest" style="text-decoration: none; color: white;">
+                Get back
+            </a>
+        </div>
+
+        <center><div style="height: 50px;">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <br>
+                        <h5 style="color: red">{{message}}</h5>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div></center>
+    
+    </div>
+
+    
+
+{% endblock %}

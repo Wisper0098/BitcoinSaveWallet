@@ -1,0 +1,179 @@
+{% extends 'profile/profile_base.html' %}
+
+{% block title %}Invest {% endblock %}
+
+{% block content %}
+
+<style>
+
+    .table 
+    {
+        border-radius: 10px;
+        width: 50%;
+        overflow: hidden;
+
+    
+    }
+
+    .table td, .table th
+    {
+        padding: 18px 20px;
+        border: 1px solid black;
+        text-align: center;
+        
+    }
+
+    .table th
+    {
+        background-color: #8D979A;
+    }
+
+    .table-box
+    {
+        width: 100%;
+
+        left: 50%;
+        top: 50%;
+        position  : absolute;
+        transform : translate(-50%, -50%);
+    }
+
+    #vip
+    {
+        background-color: #8D979A;
+    }
+
+    span 
+    {
+        display:block;
+        border:2px solid #0f2112;
+        border-radius:5px;padding:10px;
+        margin-left:9%;
+        margin-right:7%;
+        margin-top:50px; 
+        margin-bottom:10px;
+        color:red;
+    }
+
+    a.button {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+    
+        text-decoration: none;
+        color: initial;
+    }
+
+</style>
+
+<span style="color:red">
+    You are currently using a free trial account. Our system automatically removes free trial accounts that does not make a VIP investment after a few days. Withdrawals, sending, receiving and other VIP features are not possible with a free trial account.
+    Please invest in a VIP plan now to start earning with our service. Your account will be upgraded from free trial to VIP and all features (including instant withdrawal from your account balance to your BTC address) will become available as soon as you invest.
+</span>
+    
+    <div class="table-box">
+        <center>
+            
+            <div style="padding: 90px;">
+            </div>
+
+            <h3>Your current VIP status: {{vip_status}}</h3>
+
+            <br>
+
+            <table class="table">
+
+                <thead>
+                    <th>VIP Plans</th>
+                    <th>Invest</th>
+                    <th>Limit</th>
+                    <th>Annual ROI</th>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td id="vip">VIP 1
+                            <a href="/invest/0.005">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.005</td>
+                        <td>฿ 0.025</td>
+                        <td>3%</td>
+                    </tr>
+
+                    <tr>
+                        <td id="vip">VIP 2
+                            <a href="/invest/0.05">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.05</td>
+                        <td>฿ 1.00</td>
+                        <td>5%</td>
+                    </tr>
+
+                    <tr>
+                        <td id="vip">VIP 3
+                            <a href="/invest/0.08">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.08</td>
+                        <td>฿ 2.00</td>
+                        <td>6%</td>
+                    </tr>
+
+                    <tr>
+                        <td id="vip">VIP 4
+                            <a href="/invest/0.10">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.10</td>
+                        <td>฿ 5.00</td>
+                        <td>8%</td>
+                    </tr>
+
+                    <tr>
+                        <td id="vip">VIP 5
+                            <a href="/invest/0.20">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.20</td>
+                        <td>฿ 20.00</td>
+                        <td>9%</td>
+                    </tr>
+
+                    <tr>
+                        <td id="vip">VIP 6
+                            <a href="/invest/0.50">
+                                <button>
+                                    Invest
+                                </button>
+                            </a>
+                        </td>
+                        <td>฿ 0.50</td>
+                        <td>Unlimited</td>
+                        <td>10%</td>
+                    </tr>
+            
+
+                </tbody>
+            </table>
+        </center>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'signing/sign_base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+    <div class="login-form">
+        <form action="#" method="POST">
+            <div class="mb-3">
+                <center>
+                    <label for="email" class="form-label">Login</label>
+                    <input type="text" name="username" class="form-control" placeholder="Username/Phone/Email">
+                </center>
+            </div>
+            <div class="mb-3">
+                <center>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                </center>
+                   
+                <center>
+                    <div id="message">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <br>
+                                    <p class="text-wrap">{{message}}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </center>
+            </div>
+            
+            <center>
+                <button type="submit" style="background-color: #8D979A;">Login</button>
+            </center>
+        </form>
+
+        <a id="register-link" href="/signup">Register new account</a>
+        <a id="forgotpswd-link" href="#">Forgot password</a>
+
+    </div>
+
+{% endblock %}

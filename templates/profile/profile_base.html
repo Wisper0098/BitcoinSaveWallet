@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=1170">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/loginpage.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/registerpage.css')}}" >
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/profile.css')}}" >
+        <link rel="icon" href="{{url_for('static', filename="images/favicon.ico")}}" />
+        
+        <script src="https://use.fontawesome.com/8c6f04286d.js"></script>
+    </head>
+<body style="min-width: 1170px;">
+
+    <heaver>
+        <nav class="navbar" style="background-color: #8D979A;">  
+            <img class="nav-logo" src="{{url_for('static', filename='images/btcsave.png')}}" alt="Btcsave">
+            
+            <div class="profile-info">
+                <div><img class="pfp" src="{{url_for('static', filename='images/avatar.png')}}"></div>
+                <p class="profile-name">{{username}}</p>
+            </div>
+
+            <a class="logout-link" href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="vertical-nav">
+        <div class="nav-left-Box" style="z-index: 90;">
+            <div style="padding-left:10px; font-size:14px;overflow:hidden"> 
+                <p><strong>{{nowtime}}</strong></p>
+                <div style="height: 3px;"></div>
+                <p><b style="color: red">ID: {{user_id}}</b></p>
+                <div style="height: 3px;"></div>
+                <p><b style="color: green">My balance: {{balance}} BTC</b></p>
+                <div style="height: 3px;"></div>
+                <p><b style="color: blue">My status: VIP {{status}}</b></p>
+            </div>
+                
+                <a href="/profile" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">  
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Home
+                    </div>
+                </a>
+                
+                <a href="/deposit" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Deposit
+                    </div>
+                </a>
+                
+                <a href="/withdraw" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Withdraw
+                    </div>
+                </a>
+                
+                <a href="/transfer" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Transfer
+                    </div>
+                </a>
+                
+                <a href="/invest" style="text-decoration: none;">
+                    <div class="nav-left-Box-List ">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Invest
+                    </div>
+                </a>
+                
+                <a href="/about" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;About
+                    </div>
+                </a>
+
+                <a href="/partners" style="text-decoration: none;">
+                    <div class="nav-left-Box-List">
+                        <i class="iconfont"></i>&nbsp;&nbsp;&nbsp;&nbsp;Partners
+                    </div>
+                </a>
+
+            </div>
+    </div>
+
+    <div class="user-menu">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>

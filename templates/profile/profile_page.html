@@ -1,0 +1,176 @@
+{% extends 'profile/profile_base.html' %}
+
+{% block title %}Profile - {{username}}{% endblock %}
+
+{% block usrname %}
+    {{username}}
+{% endblock %}
+
+{% block logout_link %}
+    <a href="/logout">Logout</a>
+{% endblock %}
+
+{% block content %}
+
+    <style>
+
+        .container
+        {
+            margin-top: 130px;
+            display: flex;
+            column-gap: 100px;
+        
+            justify-content: center;
+        }
+
+        .container div
+        {
+            width: 300px;
+            height: 150px;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: white;
+            cursor: pointer;
+            text-align: center;
+
+        }
+
+        .container div:hover
+        {
+            background-color: #A2A2A2;
+        }
+
+        .container-2
+        {
+            margin-top: 50px;
+            display: flex;
+            column-gap: 100px;
+        
+            justify-content: center;
+        }
+
+        .container-2 div
+        {
+            width: 300px;
+            height: 150px;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .container-2 div:hover
+        {
+            background-color: #A2A2A2;
+        }
+        
+
+        .deposit-block
+        {
+            text-align: center;
+        }
+
+        .withdraw-block
+        {
+
+        }
+
+        .transfer-block
+        {
+
+        }
+
+        .transfer-history-check
+        {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction:column;
+            margin-top: 5%;
+            height: 50px;
+            width: 80%;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .transfer-history-check:hover
+        {
+            background-color: #A2A2A2;
+        }
+
+        .transfer-history-check h3
+        {
+            padding: 15px; 
+        }
+
+        .container p 
+        {
+            text-align:center;
+            margin-top: 55px;  
+        }
+
+        .container-2 p 
+        {
+            text-align:center;
+            margin-top: 55px;  
+        }
+
+        #btn1{color: black;}
+
+    </style>
+
+    <div class="container">
+        
+        <a id="btn1" style="text-decoration: none;" href="/deposit">
+            <div class="deposit-block">
+                <p>Deposit</p>
+            </div>
+        </a>
+
+        <a id="btn1" style="text-decoration: none;" href="/withdraw">
+            <div class="withdraw-block">
+                <p>Withdraw</p>
+            </div>
+        </a>
+
+        <a id="btn1" style="text-decoration: none;" href="/transfer">
+            <div class="transfer-block">
+                <p>Transfer</p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="container-2">
+        
+        <a id="btn1" style="text-decoration: none;" href="/generate-check">
+            <div class="deposit-block">
+                <p>Generate eCheck</p>
+            </div>
+        </a>
+        
+        <a id="btn1" style="text-decoration: none;" href="/exchange-check">
+            <div class="withdraw-block">
+                <p>Exchange eCheck</p>
+            </div>
+        </a>
+        
+        <a id="btn1" style="text-decoration: none;" href="/about">
+            <div class="transfer-block">
+                <p>About</p>
+            </div>
+        </a>
+
+    </div>
+
+        <a href="/transfer" style="text-decoration: none; color: black;">
+            <center>
+                <div class="transfer-history-check">
+                    <h3 align="center">My transfer history</h3>
+                <div>
+            </center>
+        </a>
+    
+
+{% endblock %}

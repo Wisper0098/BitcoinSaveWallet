@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><img src="{{url_for('static', filename="images/btcsave.png")}}" alt="Btcsave" class="nav-logo">Register account</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/loginpage.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/registerpage.css')}}" >
+    </head>
+<body style="background-color: #8D979A;">
+    
+    <nav>
+        <img src="{{url_for('static', filename="images/btcsave.png")}}" alt="Btcsave" class="nav-logo">
+    </nav>
+
+    <div class="register-form-div">
+        <form action="#" method="POST" class="register-form">
+            <table>
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td><input type="text" name="username" class="input-form" minlength="5" placeholder="Enter new username" required/>
+                    <hr>
+                    </td>
+                </tr>
+                    
+                <tr>    
+                    <td><label>Email:</label></td>
+                    <td><input type="email" name="email" class="input-form" placeholder="Enter your email" required/><hr></td>
+                </tr>            
+        
+                <tr>
+                    <td><label>Phone:</label></td>
+                    <td><input class="input-form" name="phone" type="text" minlength="5" placeholder="Enter your phone number" required/>
+                    <hr></td>
+                </tr>
+
+                <tr>
+                    <td><label>BTC Wallet:</label></td>
+                    <td><input class="input-form" name="btc_wallet" type="text" minlength="24" placeholder="Enter BTC Wallet" required/>
+                    <hr></td>
+                </tr>
+
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><input class="input-form" name="password" type="text" minlength="8" placeholder="Create new password" required/>
+                    <hr></td>
+                </tr>
+
+                <tr>
+                    <td><label>Confirm:</label></td>
+                    <td><input class="input-form" name="confirmed_pswd" type="text" minlength="8" placeholder="Confirm new password" required/>
+                    <hr></td>
+                </tr>
+
+                <tr>
+                    <td><label id="secure">New secure key:</label></td>
+                    <td><input class="input-form" name="secure_key" type="text" placeholder="Create new secure key" required/>
+                    <hr></td>
+                </tr>
+
+                <tr>
+                    <td><label id="secure">Confirm:</label></td>
+                    <td><input class="input-form" name="confirmed_secure_key" type="text" placeholder="Confirm new secure key" required/>
+                    <hr></td>
+                </tr>
+
+            </table>
+
+            <br><button class="proceed-button" type="submit">Proceed</button>
+
+        </form
+    </div>
+
+</body>
+

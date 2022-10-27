@@ -1,0 +1,71 @@
+{% extends "finances/finance_base.html" %}
+
+{% block content %}
+
+    <style>
+
+        .dep-block
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+
+            width: 1000px;
+            height: 500px;
+
+            border-radius: 20px;
+
+            background-color: white;
+        }
+
+        .dep-window
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+        }
+
+        .qr
+        {
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+        .back-button
+        {
+            margin-left: 2%;
+            margin-top: 3%;
+            text-align: center;
+            width: 80px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+    </style>
+
+    <div class="dep-block">
+        <div class="dep-window">
+            <p>Send BTC to the Bitcoin address below:</p>
+            <br>
+            <p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p>
+            <div style="height: 10px;"></div>
+            <img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" >
+            <div style="height: 70px;"></div>
+            <form action="#" method="post">
+                <label>Your TXID:</label>
+                <input type="text" placeholder="TXID" name="TXID" required>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+        <div class="back-button">
+            <a href="/" style="text-decoration: none; color: white;">
+                Get back
+            </a>
+        <div>
+    </div>
+
+   
+
+{% endblock %}

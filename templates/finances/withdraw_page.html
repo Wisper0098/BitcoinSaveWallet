@@ -1,0 +1,108 @@
+{% extends "finances/finance_base.html" %}
+
+{% block content %}
+
+    <style>
+
+        .withdraw-block
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+
+            width: 1000px;
+            height: 500px;
+            border-radius: 20px;
+            
+            background-color: white;
+
+            
+        }
+
+        .withdraw-form
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+
+            width: 700px;
+            height: 400px;
+        }
+
+        .withdraw-form form 
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+        }
+
+        .back-button
+        {
+            margin-left: 2%;
+            margin-top: 3%;
+            text-align: center;
+            width: 80px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+          }
+        input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+          }
+
+    </style>
+
+    <div class="withdraw-block">
+
+    
+
+        <div class="withdraw-form">
+            <form action="#" method="post">
+                <label >Amount: (Your balance: {{balance}} BTC)</label>
+                <div style="height: 5px"></div>
+                <input type="number" placeholder="Amount" name="amount" size="30" required>
+                <div style="height: 5px"></div>
+                <label>Receiver adress:</label>
+                <div style="height: 5px"></div>
+                <input type="text" placeholder="Receiver adress" name="receiver_addr" size="30" required>
+                <div style="height: 5px"></div>
+                <label>Secure key:</label>
+                <div style="height: 5px"></div>
+                <input type="text" placeholder="Secure Key" name="secure_key" size="30" required>
+                <a href="/recovery" style="font-size: 12px;">Forgot Secure Key</a>
+                <div style="height: 15px"></div>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+
+        <center><div style="height: 50px;">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <br>
+                        <h5 style="color: red">{{message}}</h5>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div></center>
+
+        <div class="back-button">
+            <a href="/" style="text-decoration: none; color: white;">
+                Get back
+            </a>
+        <div>
+    </div>
+
+{% endblock %}

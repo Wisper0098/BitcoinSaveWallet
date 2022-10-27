@@ -1,0 +1,27 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Bitcoin Save{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/loginpage.css')}}" >
+    <link rel="icon" href="{{url_for('static', filename="images/favicon.ico")}}" />
+  
+<body style="background-color: #D3DEE1;">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+          }
+    </style>
+
+    <nav class="navbar" style="background-color: #8D979A;">
+        <div class="container-fluid">
+            <img class="nav-logo" src="{{url_for('static', filename='images/btcsave.png')}}" alt="Btcsave">
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

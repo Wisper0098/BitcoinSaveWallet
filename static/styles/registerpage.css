@@ -1,0 +1,31 @@
+.register-form-div
+{
+    left: 50%;
+    top: 50%;
+    position  : absolute;
+    transform : translate(-50%, -50%);
+
+    width: 35%;
+    height: 80%;
+    background: white;
+    border: 5px white;
+    border-radius: 20px;
+    margin: 40px auto;
+    padding: 0;
+    box-shadow: 2px 2px 5px;
+}
+
+.register-form
+{
+    left: 70%;
+    top: 49%;
+    position: absolute;
+    transform: translate(-50%, -50%);  
+    width: 100%;
+}
+
+
+
+::placeholder{
+    overflow: visible;
+    }
