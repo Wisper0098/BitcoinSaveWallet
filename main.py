@@ -5,7 +5,9 @@ from apps.user import user_bp
 from apps.invest import invest_bp
 from apps.deposit import deposit_bp
 from apps.withdraw import withdraw_bp
+from apps.transfer import transfer_bp
 from apps.cursor import *
+
 
 SECRET_KEY = "DxRPbsaCnQ4ntFmq"
 
@@ -14,8 +16,11 @@ app.register_blueprint(user_bp, url_prefix="/profile")
 app.register_blueprint(invest_bp, url_prefix="/invest")
 app.register_blueprint(deposit_bp, url_prefix="/deposit/")
 app.register_blueprint(withdraw_bp, url_prefix="/withdraw")
+app.register_blueprint(transfer_bp, url_prefix="/transfer")
 app.secret_key = SECRET_KEY
-  
+
+create_transactions_table()
+
 @app.route('/', methods=["GET", "POST"])
 @app.route('/login', methods=["GET", "POST"])
 def login():

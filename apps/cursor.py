@@ -51,6 +51,19 @@ def create_users_finance_table():
     conn.close()
 
 
+def create_transactions_table():
+    conn = create_conn()
+    cursor = conn.cursor()
+    cursor.execute('''
+            CREATE TABLE transactions(from varchar(50) NOT NULL,
+            to varchar(50) NOT NULL,
+            amount int NOT NULL,
+            trans_time datetime NOT NULL)
+        ''')
+    cursor.close()
+    conn.close()
+
+
 def check_user_existence(username, password):
     conn = create_conn()
     cursor = conn.cursor()
@@ -107,8 +120,10 @@ def get_user_id(user):
     conn = create_conn()
     cursor = conn.cursor()
     rqst = cursor.execute("SELECT id FROM users WHERE username=%s", (user))
+
     if rqst != 0:
-        return dict(cursor.fetchone()).get("id", 0)
+        result = dict(cursor.fetchone()).get("id", 0)
+        return result
     else:
         pass
     cursor.close()
@@ -130,7 +145,7 @@ def get_user_balance(user_id):
 def get_user_status(user_id):
     conn = create_conn()
     cursor = conn.cursor()
-    rqst = cursor.execute("SELECT status FROM finances WHERE user_id=%s"% (user_id))
+    rqst = cursor.execute("SELECT status FROM finances WHERE user_id=%s", (user_id))
     if rqst != 0:
         return dict(cursor.fetchone()).get("balance", 0)
     else:
@@ -142,19 +157,21 @@ def get_user_status(user_id):
 def get_secure_key(user_id):
     conn = create_conn()
     cursor = conn.cursor()
-    rqst = cursor.execute("SELECT secure_key FROM users WHERE id=%s", (user_id))
+    rqst = cursor.execute("SELECT secure_key FROM users WHERE id=%d" % user_id)
     if rqst != 0:
-        return dict(cursor.fetchone()).get("id", 0)
+        res = cursor.fetchone()['secure_key']
+        return res
     else:
         pass
     cursor.close()
     conn.close()
     
-
+def get_user_full_info(user):
+    return {"username":user, "user_id":get_user_id(user), "balance":get_user_balance(id), "status": get_user_status(id)}
 
 def check_btc_adrr_validity(addr):
     is_valid = False
-    if len(addr) == 64:
+    if len(addr) >= 25 and len(addr) <= 35:
         is_valid = True
     else:
         pass
@@ -170,6 +187,22 @@ def generate_user_id():
 def get_nowtime():
     now_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     return now_time
+
+def add_funds(user_id, amount):
+    conn = create_conn()
+    cursor = conn.cursor()
+
+    sql = "UPDATE finances SET balance = %s WHERE user_id = %s"
+    val = (amount, user_id)
+
+    cursor.execute(sql, val)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+def send_funds():pass
+
 
 
 

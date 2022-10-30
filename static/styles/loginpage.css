@@ -9,8 +9,14 @@ label
     align-items:center;
 }
 
+.navbar
+{
+    height: 80px;
+}
+
 .nav-logo 
 {
+    margin-top: 10px;
     margin-right: auto;
     width: 240px;
     height: 60px;

@@ -1,4 +1,6 @@
-{% extends "finances/finance_base.html" %}
+{% extends "profile/profile_base.html" %}
+
+{% block title %}Deposit{% endblock %}
 
 {% block content %}
 
@@ -11,8 +13,8 @@
             top: 50%; /*  relative to nearest positioned ancestor or body element */
             transform: translate(-50%, -50%);
 
-            width: 1000px;
-            height: 500px;
+            width: 95%;
+            height: 90%;
 
             border-radius: 20px;
 
@@ -27,6 +29,29 @@
             transform: translate(-50%, -50%);
         }
 
+        input[type=text]
+        {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .submit-btn
+        {
+            width: 100%;
+            height: 40px;
+            background-color: gray;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover
+        {
+            background-color:
+        }
+
         .qr
         {
             border: 5px solid white;
@@ -36,9 +61,11 @@
         .back-button
         {
             margin-left: 2%;
-            margin-top: 3%;
+            margin-top: 50%;
+            padding: 15px;
             text-align: center;
-            width: 80px;
+            height: 50px;
+            width: 100px;
             background-color: black;
             border-radius: 10px;
         }
@@ -47,17 +74,28 @@
 
     <div class="dep-block">
         <div class="dep-window">
-            <p>Send BTC to the Bitcoin address below:</p>
+            <h3>Send BTC to the Bitcoin address below:</h3>
             <br>
-            <p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p>
+            <strong><p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p></strong>
             <div style="height: 10px;"></div>
             <img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" >
             <div style="height: 70px;"></div>
-            <form action="#" method="post">
+            <form action="#" method="post" class="dep-form">
                 <label>Your TXID:</label>
                 <input type="text" placeholder="TXID" name="TXID" required>
-                <input type="submit" value="Send">
+                <br>
+                <input type="submit" class="submit-btn" value="Send">
             </form>
+            <center><div style="height: 50px;">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <br>
+                        <h5 style="color: red">{{message}}</h5>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div></center>
         </div>
         <div class="back-button">
             <a href="/" style="text-decoration: none; color: white;">
