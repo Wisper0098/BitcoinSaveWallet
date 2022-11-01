@@ -17,9 +17,9 @@ app.register_blueprint(invest_bp, url_prefix="/invest")
 app.register_blueprint(deposit_bp, url_prefix="/deposit/")
 app.register_blueprint(withdraw_bp, url_prefix="/withdraw")
 app.register_blueprint(transfer_bp, url_prefix="/transfer")
+
 app.secret_key = SECRET_KEY
 
-create_transactions_table()
 
 @app.route('/', methods=["GET", "POST"])
 @app.route('/login', methods=["GET", "POST"])
@@ -88,5 +88,11 @@ def about():
     return render_template('about.html')
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 if __name__ == "__main__":
+    app.register_error_handler(404, page_not_found)
     app.run(debug=True)

@@ -44,7 +44,7 @@ def create_users_finance_table():
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE finances(user_id int UNIQUE,
-        balance int,
+        balance double(10, 5),
         status int)
     ''')
     cursor.close()
@@ -55,14 +55,20 @@ def create_transactions_table():
     conn = create_conn()
     cursor = conn.cursor()
     cursor.execute('''
-            CREATE TABLE transactions(from varchar(50) NOT NULL,
-            to varchar(50) NOT NULL,
-            amount int NOT NULL,
+            CREATE TABLE transactions(from_user varchar(50) NOT NULL,
+            to_user varchar(50) NOT NULL,
+            amount double(10,5) NOT NULL,
             trans_time datetime NOT NULL)
         ''')
     cursor.close()
     conn.close()
 
+
+def register_db():
+    create_user_table()
+    create_users_finance_table()
+    create_transactions_table()
+    
 
 def check_user_existence(username, password):
     conn = create_conn()
@@ -147,7 +153,7 @@ def get_user_status(user_id):
     cursor = conn.cursor()
     rqst = cursor.execute("SELECT status FROM finances WHERE user_id=%s", (user_id))
     if rqst != 0:
-        return dict(cursor.fetchone()).get("balance", 0)
+        return dict(cursor.fetchone()).get("status", 0)
     else:
         pass
     cursor.close()
@@ -188,20 +194,77 @@ def get_nowtime():
     now_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     return now_time
 
+
+def get_user_account(id):
+    conn = create_conn()
+    cursor = conn.cursor()
+
+    res=cursor.execute("SELECT user_id FROM finances WHERE user_id=%s" % id)
+   
+    cursor.close()
+    conn.close()
+    return res
+
+
 def add_funds(user_id, amount):
     conn = create_conn()
     cursor = conn.cursor()
 
+    old_balance = cursor.execute("SELECT balance FROM finances WHERE user_id=%s" % user_id)
+    new_balance = float(dict(cursor.fetchone()).get('balance', 0)) + float(amount)
+    print(new_balance)
     sql = "UPDATE finances SET balance = %s WHERE user_id = %s"
-    val = (amount, user_id)
-
+    val = (new_balance, user_id)
     cursor.execute(sql, val)
     conn.commit()
     cursor.close()
     conn.close()
 
 
-def send_funds():pass
+def withdraw_funds(user_id, amount_to_withdraw):
+    conn = create_conn()
+    cursor = conn.cursor()
+
+    old_balance = cursor.execute("SELECT balance FROM finances WHERE user_id=%s" % user_id)
+    new_balance = float(dict(cursor.fetchone()).get('balance', 0)) - float(amount_to_withdraw)
+    sql = "UPDATE finances SET balance = %s WHERE user_id = %s"
+    val = (new_balance, user_id)
+    cursor.execute(sql, val)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+def make_transaction(from_user, to_user, amount):
+    conn = create_conn()
+    cursor = conn.cursor()
+
+    transaction_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    sql = """INSERT INTO transactions (from_user, to_user, amount, trans_time) 
+            VALUES (%s, %s, %s, '%s')""" % (from_user, to_user, amount, transaction_time)
+    
+    cursor.execute(sql)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+def get_transaction(user_id):
+    conn = create_conn()
+    cursor = conn.cursor()
+
+    sql = """SELECT * FROM transactions"""
+    cursor.execute(sql)
+    res = cursor.fetchmany(10)
+
+    cursor.close() 
+    conn.close()
+
+    return res
+
+def send_funds():
+    pass
 
 
 

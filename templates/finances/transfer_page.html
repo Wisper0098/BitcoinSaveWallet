@@ -79,30 +79,51 @@
             box-sizing: border-box;
           }
 
-
+    .trans-a
+    {
+        color: blue;
+        position: absolute;
+        left: 5%;
+        top: 90%;
+        font-size: small;
+    }
 
 </style>
 
+{% if status == 0%}
+<style>
+    .transfer-block
+    {
+        filter: blur(2px);
+        pointer-events:none;
+    }
+
+</style>
+{% endif %}
 
 <div class="transfer-block">
 
     <span style="color:red">
-        Maximum transfer amount is 0.2 BTC per hour
+        Maximum transfer amount is 0.2 BTC per transaction
     </span>
 
     <div class="transfer-form">
             <form action="#" method="post">
                 <label >Amount: (Your balance: <b>{{balance1}} BTC</b>)</label>
                 <div style="height: 5px"></div>
-                <input type="number" placeholder="Amount" name="amount" size="30" required>
+                <input type="number" step="0.01" placeholder="Amount" name="amount" size="30" required>
                 <div style="height: 5px"></div>
-                <label>Receiver adress(or User ID):</label>
+                <label>Username(or User ID):</label>
                 <div style="height: 5px"></div>
-                <input type="text" placeholder="Receiver adress/User ID" name="receiver_addr" size="30" required>
+                <input type="text" placeholder="Username/User ID" name="receiver_addr" size="30" required>
                 <div style="height: 5px"></div>
                 <label>Secure key(<b>not required for VIP users</b>):</label>
                 <div style="height: 5px"></div>
-                <input type="text" placeholder="Secure Key" name="secure_key" size="30">
+                {% if status == 0 %}
+                    <input type="text" placeholder="Secure Key" name="secure_key" size="30">
+                {% else %}
+                    <input type="text" placeholder="Secure Key" name="secure_key" size="30" disabled>
+                {% endif %}
                 <div style="height: 15px"></div>
                 <input type="submit" value="Send" class="submit-btn">
             </form>
@@ -119,7 +140,7 @@
             </div></center>
 
         </div>
-
+    <a class="trans-a" href="/transfer/history">Transfer history</a>
 </div>
 
 {% endblock %}

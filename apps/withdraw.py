@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 
-from .cursor import get_secure_key, check_btc_adrr_validity
+from .cursor import get_nowtime, get_secure_key, check_btc_adrr_validity
 
 from .cursor import get_user_id, get_user_balance, get_user_status
 
@@ -9,7 +9,7 @@ withdraw_bp = Blueprint("withdraw_bp", __name__, static_folder="static", templat
 
 @withdraw_bp.route("/", methods=["GET", "POST"])
 def withdraw():
-    if "user" in session:  
+    if "user" in session and get_user_status(get_user_id(session["user"])) > 0:  
         user = session["user"]
         id = get_user_id(user)
         balance = get_user_balance(id)
@@ -37,7 +37,7 @@ def withdraw():
                 pass
         
         return render_template("finances/withdraw_page.html", balance1=balance, username=user, user_id=id, balance=get_user_balance(id),
-                               status=get_user_status(id))
+                               status=get_user_status(id), nowtime=get_nowtime())
         
     else: 
         return redirect(url_for("login"))

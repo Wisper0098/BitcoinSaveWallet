@@ -11,8 +11,6 @@
         border-radius: 10px;
         width: 50%;
         overflow: hidden;
-
-    
     }
 
     .table td, .table th
@@ -20,7 +18,6 @@
         padding: 18px 20px;
         border: 1px solid black;
         text-align: center;
-        
     }
 
     .table th
@@ -66,15 +63,23 @@
 
 </style>
 
+{% if status == 0 %}
 <span style="color:red">
     You are currently using a free trial account. Our system automatically removes free trial accounts that does not make a VIP investment after a few days. Withdrawals, sending, receiving and other VIP features are not possible with a free trial account.
     Please invest in a VIP plan now to start earning with our service. Your account will be upgraded from free trial to VIP and all features (including instant withdrawal from your account balance to your BTC address) will become available as soon as you invest.
 </span>
+<style>.custom-padding{padding: 60px;}</style>
+{% else %}
+<span style="color:red">
+    You are using VIP 6 level account
+</span>
+<style>.custom-padding{padding: 40px;}</style>
+{% endif %}
     
     <div class="table-box">
         <center>
             
-            <div style="padding: 90px;">
+            <div class="custom-padding">
             </div>
 
             <h3>Your current VIP status: {{vip_status}}</h3>

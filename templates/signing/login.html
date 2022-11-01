@@ -5,40 +5,45 @@
 {% block content %}
 
     <div class="login-form">
+        <div style="height: 50px"></div>
         <form action="#" method="POST">
-            <div class="mb-3">
-                <center>
-                    <label for="email" class="form-label">Login</label>
-                    <input type="text" name="username" class="form-control" placeholder="Username/Phone/Email">
-                </center>
-            </div>
-            <div class="mb-3">
-                <center>
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </center>
-                   
-                <center>
-                    <div id="message">
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                {% for message in messages %}
-                                    <br>
-                                    <p class="text-wrap">{{message}}</p>
-                                {% endfor %}
-                            {% endif %}
-                        {% endwith %}
-                    </div>
-                </center>
-            </div>
+            <center><table>
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td><input type="text" name="username" class="input-form" minlength="5" placeholder="Enter username" required/>
+                    </td>
+                </tr>
+                    
+                <tr>    
+                    <td><label>Password:</label></td>
+                    <td><input type="password" name="password" class="input-form" placeholder="Enter password" required/><hr></td>
+                </tr> 
+
+            </table></center>
+            <div style="height: 40px"></div>
+            <center>
+                <button class="submit-btn" type="submit" style="background-color: #8D979A;">Login</button>
+            </center>
+        
+            <a id="register-link" href="/signup">Register new account</a>
             
             <center>
-                <button type="submit" style="background-color: #8D979A;">Login</button>
+                <div id="message">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}                                
+                            {% for message in messages %}
+                                <br>
+                                <p class="text-wrap">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
             </center>
         </form>
-
-        <a id="register-link" href="/signup">Register new account</a>
-        <a id="forgotpswd-link" href="#">Forgot password</a>
+    </div>
+            
+            
+        
 
     </div>
 

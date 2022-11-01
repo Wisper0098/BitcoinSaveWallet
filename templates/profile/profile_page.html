@@ -12,11 +12,74 @@
 
 {% block content %}
 
+    {% if status == 0 %}
+
+    <div class="message-box">
+        <div class="wrapper">
+            <div class="message-info">
+                <p style="color: green"><b>Your current balance: {{balance}} BTC</b></p>
+                <br>
+                <p style="color: red"><b>
+                    For Withdraw/Transfer your tokens. 
+                    <br>
+                    You must complete our <a href="/invest">VIP subscription</a>
+                </b></p>
+            </div>
+        </div>
+    </div>
+
+
+        <style>
+
+            .wrapper
+            {
+                position: absolute;
+                left: 50%; /* relative to nearest positioned ancestor or body element */
+                top: 50%; /*  relative to nearest positioned ancestor or body element */
+                transform: translate(-50%, -50%);
+            }
+
+            .message-info
+            {
+                padding: 10px;
+            }
+            
+            .message-box{
+                background-color: #F1F1F1;
+                z-index: 100;
+                position: absolute;
+                left: 50%; /* relative to nearest positioned ancestor or body element */
+                top: 50%; /*  relative to nearest positioned ancestor or body element */
+                transform: translate(-50%, -50%);
+                width: 30%;
+                height: 200px;
+                border-radius: 10px;
+            }
+
+            .container {
+                filter: blur(2px);
+                pointer-events:none;
+                
+            }
+            .container-2 {
+                filter: blur(2px);
+                pointer-events:none;
+
+            }
+            .transfer-history-check{
+                filter: blur(2px);
+                pointer-events:none;
+                cursor: default;
+            }
+        </style>
+        
+    {% endif %}
+
     <style>
 
         .container
         {
-            margin-top: 130px;
+            margin-top: 50px;
             display: flex;
             column-gap: 100px;
         
@@ -26,8 +89,8 @@
         .container div
         {
             width: 300px;
-            height: 150px;
-            padding: 10px;
+            height: 130px;
+            padding: 5px;
             border-radius: 15px;
             background-color: white;
             cursor: pointer;
@@ -52,8 +115,8 @@
         .container-2 div
         {
             width: 300px;
-            height: 150px;
-            padding: 10px;
+            height: 130px;
+            padding: 5px;
             border-radius: 15px;
             background-color: white;
             cursor: pointer;
@@ -63,22 +126,7 @@
         {
             background-color: #A2A2A2;
         }
-        
 
-        .deposit-block
-        {
-            text-align: center;
-        }
-
-        .withdraw-block
-        {
-
-        }
-
-        .transfer-block
-        {
-
-        }
 
         .transfer-history-check
         {
@@ -118,25 +166,51 @@
 
         #btn1{color: black;}
 
+        
+        .withdraw-message
+        {
+            color:red; 
+            font-size: 15px;
+            background-color: #ffcaca;
+            background-image:url(/Content/x.png);
+            background-size: 20px 20px;
+            background-repeat:no-repeat;
+            background-position:2px;
+            padding: 5px;
+            border-radius: 5px 5px 5px;
+            border: 1px solid red;
+            padding-left: 25px;
+            position:relative;
+        }
     </style>
+
+    <div style="height: 50px;"></div>
+    {% if status > 0 %}
+    <div class="withdraw-message">
+        Withdrawal to your registered Bitcoin wallet address has been disabled because you haven't withdrawn for more than 365 days. 
+        To reactivate withdrawal you need to contact customer care and provide your secure key you created during account registration.You will still be able to carry out transfers and transactions from your account balance to other Btcsave VIP members without your secure key for the next 6 months.
+    </div>
+    {% endif %}
 
     <div class="container">
         
+        
+
         <a id="btn1" style="text-decoration: none;" href="/deposit">
             <div class="deposit-block">
-                <p>Deposit</p>
+                <p><b>Deposit</b></p>
             </div>
         </a>
 
         <a id="btn1" style="text-decoration: none;" href="/withdraw">
             <div class="withdraw-block">
-                <p>Withdraw</p>
+                <p><b>Withdraw</b></p>
             </div>
         </a>
 
         <a id="btn1" style="text-decoration: none;" href="/transfer">
             <div class="transfer-block">
-                <p>Transfer</p>
+                <p><b>Transfer</b></p>
             </div>
         </a>
 
@@ -146,31 +220,29 @@
         
         <a id="btn1" style="text-decoration: none;" href="/generate-check">
             <div class="deposit-block">
-                <p>Generate eCheck</p>
+                <p><b>Generate eCheck</b></p>
             </div>
         </a>
         
         <a id="btn1" style="text-decoration: none;" href="/exchange-check">
             <div class="withdraw-block">
-                <p>Exchange eCheck</p>
+                <p><b>Exchange eCheck</b></p>
             </div>
         </a>
         
         <a id="btn1" style="text-decoration: none;" href="/about">
             <div class="transfer-block">
-                <p>About</p>
+                <p><b>About</b></p>
             </div>
         </a>
 
     </div>
-
-        <a href="/transfer" style="text-decoration: none; color: black;">
-            <center>
-                <div class="transfer-history-check">
-                    <h3 align="center">My transfer history</h3>
-                <div>
-            </center>
+    <center>
+        <a href="/transfer/history" style="text-decoration: none; color: black;" class="transfer-history-check">
+            <div>
+                <h3 align="center">My transfer history</h3>
+            </div>
         </a>
-    
+    </center>
 
 {% endblock %}

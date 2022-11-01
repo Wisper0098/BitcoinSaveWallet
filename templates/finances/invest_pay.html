@@ -4,6 +4,12 @@
 
 
 {% block content%}
+{% if status == 0%}
+<style>
+   
+
+</style>
+{% endif %}
     <style>
 
         .invest-block
@@ -20,20 +26,35 @@
             background-color: white;
         }
 
-        .back-button
-        {
-            margin-left: 2%;
-            margin-top: 3%;
-            text-align: center;
-            width: 80px;
-            background-color: black;
-            border-radius: 10px;
-        }
-
         .qr
         {
             border: 5px solid white;
             border-radius: 10px;
+        }
+
+        .txid-form
+        {
+
+        }
+
+        input[type=text]
+        {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            
+            border: 1px solid black;
+            width:50%;
+        }
+
+        .submit-btn
+        {
+            width: 40%;
+            height: 40px;
+            background-color: gray;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
         }
 
     </style>
@@ -50,25 +71,20 @@
             <p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p>
             <div style="height: 5px;"></div>
             <img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" >
-            <br>
-            <form action="#" method="post" style="height: 10px;">
-                <label>Your TXID:</label>
-                <input type="text" placeholder="TXID" name="TXID" required>
-                <input type="submit" value="Send request">
-            </form>
+            <div style="height: 50px;" ></div>
+            <div class="txid-form">
+                <form action="#" method="post" style="height: 10px;">
+                    
+                    <input type="text" placeholder="TXID" name="TXID" required>
+                    <br>
+                    <input type="submit" class="submit-btn" value="Send request">
+                </form>
+            </div>
         </center>
-
-        <div class="back-button">
-            <a href="/invest" style="text-decoration: none; color: white;">
-                Get back
-            </a>
-        </div>
-
-        <center><div style="height: 50px;">
+        <center><div style="height: 10px;">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <br>
                         <h5 style="color: red">{{message}}</h5>
                     {% endfor %}
                 {% endif %}

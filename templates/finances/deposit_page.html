@@ -4,6 +4,16 @@
 
 {% block content %}
 
+{% if status == 0%}
+<style>
+    .dep-block
+    {
+        filter: blur(2px);
+        pointer-events:none;
+    }
+</style>
+{% endif %}
+
     <style>
 
         .dep-block
@@ -58,17 +68,7 @@
             border-radius: 10px;
         }
 
-        .back-button
-        {
-            margin-left: 2%;
-            margin-top: 50%;
-            padding: 15px;
-            text-align: center;
-            height: 50px;
-            width: 100px;
-            background-color: black;
-            border-radius: 10px;
-        }
+        
 
     </style>
 
@@ -77,8 +77,8 @@
             <h3>Send BTC to the Bitcoin address below:</h3>
             <br>
             <strong><p style="color: green;">3Q6KLQ3MdcHTURqExHDDSbBWjQcRpxe37k</p></strong>
-            <div style="height: 10px;"></div>
-            <img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" >
+            <div style="height: 30px;"></div>
+            <center><img class="qr" src="{{url_for('static', filename='images/qrwal.png')}}" ></center>
             <div style="height: 70px;"></div>
             <form action="#" method="post" class="dep-form">
                 <label>Your TXID:</label>
@@ -97,11 +97,6 @@
             {% endwith %}
         </div></center>
         </div>
-        <div class="back-button">
-            <a href="/" style="text-decoration: none; color: white;">
-                Get back
-            </a>
-        <div>
     </div>
 
    

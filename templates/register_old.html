@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><img src="{{url_for('static', filename="images/btcsave.png")}}" alt="Btcsave" class="nav-logo">Register account</title>
+        <title>Register account</title>
         <link rel="stylesheet" href="{{url_for('static', filename='styles/loginpage.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/registerpage.css')}}" >
     </head>
-<body style="background-color: #8D979A;">
+<body style="background-color: #D3DEE1;">
     
-    <nav>
+    <nav class="navbar" style="background-color: #8D979A;">
         <img src="{{url_for('static', filename="images/btcsave.png")}}" alt="Btcsave" class="nav-logo">
     </nav>
 
@@ -64,9 +64,7 @@
                 </tr>
 
             </table>
-
-            <br><button class="proceed-button" type="submit">Proceed</button>
-
+            <br><input type="submit" value="Proceed" class="submit-btn2">
         </form
     </div>
 

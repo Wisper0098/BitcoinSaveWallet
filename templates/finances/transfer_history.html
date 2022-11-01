@@ -1,0 +1,75 @@
+{% extends "profile/profile_base.html" %}
+
+{% block title %}Transfer History{% endblock %}
+
+{% block content %}
+
+    <style>
+        .block
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+
+            width: 95%;
+            height: 90%;
+
+            border-radius: 20px;
+
+            background-color: white;
+        }  
+        
+        .dep-block
+        {
+            position: absolute;
+            left: 50%; /* relative to nearest positioned ancestor or body element */
+            top: 50%; /*  relative to nearest positioned ancestor or body element */
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .table
+        {
+            width: 100%;
+        }
+
+        .table td, .table th
+        {
+            padding: 18px 20px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+
+    <div class="block">
+        <div class="dep-block">
+            <center><label style="width: 20%;"><b>Last transactions:</b></label></center>
+            <table class="table">
+                    <thead>
+                        <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Amount</th>
+                        <th>Time</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+                    
+                        {% for transaction in transactions %}
+                            {% if transaction %}
+                                <tr>
+                                    <td>{{transaction["from_user"]}}</td>
+                                    <td>{{transaction["to_user"]}}</td>
+                                    <td>{{transaction["amount"]}}</td>
+                                    <td>{{transaction["trans_time"]}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
