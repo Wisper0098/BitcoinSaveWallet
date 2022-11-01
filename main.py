@@ -20,6 +20,11 @@ app.register_blueprint(transfer_bp, url_prefix="/transfer")
 
 app.secret_key = SECRET_KEY
 
+try:
+    register_db()
+except:
+    pass
+
 
 @app.route('/', methods=["GET", "POST"])
 @app.route('/login', methods=["GET", "POST"])
